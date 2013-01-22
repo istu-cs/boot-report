@@ -2,6 +2,8 @@
 	xelatex $<
 	xelatex $<
 
+main.pdf: main.tex groups.ps
+
 open: main.pdf
 	xdg-open $<
 
