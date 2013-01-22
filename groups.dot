@@ -1,29 +1,30 @@
 digraph groups
 {
+    subgraph cluster_configs
+    {
+        label="Configurations";
+        node[shape=Msquare];
+        config0[label="Config 0"];
+        config1[label="Config 1"];
+    }
     subgraph cluster_group0
     {
         label="Group 0";
-        config0[label="Config 0",shape=Msquare];
         machine0[label="Machine 0"];
         machine1[label="Machine 1"];
         machine2[label="Machine 2"];
-        machine3[label="Machine 3"];
         machine0->config0;
         machine1->config0;
         machine2->config0;
-        machine3->config0;
     }
     subgraph cluster_group1
     {
         label="Group 1";
-        config1[label="Config 1",shape=Msquare];
+        machine3[label="Machine 3"];
         machine4[label="Machine 4"];
         machine5[label="Machine 5"];
-        machine6[label="Machine 6"];
-        machine7[label="Machine 7"];
+        machine3->config1;
         machine4->config1;
         machine5->config1;
-        machine6->config1;
-        machine7->config1;
     }
 }
