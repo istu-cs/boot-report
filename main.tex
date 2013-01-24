@@ -151,7 +151,8 @@ gPXE поддерживает загрузку по протоколу http (в 
 
         В этом случае сценарий загрузки следующий:
         \begin{enumerate}
-            \item BIOS загружает gPXE с жёсткого диска и передаёт ему управление
+            \item BIOS загружает extlinux с жёсткого диска и передаёт ему управление
+            \item extlinux загружает gPXE c жёсткого диска и передаёт ему управление
             \item gPXE инициализирует сетевой стек
         \end{enumerate}
 \end{itemize}
@@ -183,9 +184,13 @@ gPXE поддерживает загрузку по протоколу http (в 
 \section{Клиент}
 
 % TODO описание загрузки GNU/Linux
+% TODO описание aufs
+% TODO описание nfs-client/nfs-root
 
 \section{Тестовые примеры}
+% TODO скриншоты из qemu
 
 \section{Выводы}
+% TODO (+)/(-)
 
 \end{document}
