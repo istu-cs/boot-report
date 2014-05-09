@@ -12,19 +12,15 @@ digraph groups
         label="Group 0";
         machine0[label="Machine 0"];
         machine1[label="Machine 1"];
-        machine2[label="Machine 2"];
         machine0->config0;
         machine1->config0;
-        machine2->config0;
     }
     subgraph cluster_group1
     {
         label="Group 1";
+        machine2[label="Machine 2"];
         machine3[label="Machine 3"];
-        machine4[label="Machine 4"];
-        machine5[label="Machine 5"];
+        machine2->config1;
         machine3->config1;
-        machine4->config1;
-        machine5->config1;
     }
 }
