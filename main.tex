@@ -328,13 +328,17 @@ chain {{GLOBAL.boot}}/{{GLOBAL.vmlinuz}} ip=dhcp ro \
 % FIXME outdated
 
 \subsection{Загрузка}
-\includepicture{pxelinux}{pxelinux.0}{1}
+\includepicture{ipxe}{undionly.kpxe}{1}
 На рисунке показаны системные сообщения, отображаемые на экран во время выполнения сетевой загрузки.
 Наглядно виден процесс и порядок выполняемых действий.
 \newpage
 
 \includepicture{menu}{Меню загрузки}{1}
 Графическое меню, составленное на основе полученного конфигурационного файла.
+\newpage
+
+\includepicture{fetch}{Загрузка GNU/Linux с HTTP-сервера}{1}
+iPXE загружает ядро и initramfs операционной системы GNU/Linux с HTTP-сервера.
 \newpage
 
 \subsection{Администрирование}
