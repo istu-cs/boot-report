@@ -187,7 +187,7 @@ TFTP-сервер хранит undionly.kpxe -- загрузчик iPXE
 конфигурацию iPXE с HTTP-сервера, передав необходимые параметры
 (например, MAC-адрес).
 
-\subsubsection{boot -- менеджер конфигурационных файлов загрузчика}
+\subsubsection{boot -- менеджер загрузки}
 
 \paragraph{boot-сервер} представляет из себя WEB-сервис, задача которого состоит в
 \begin{itemize}
@@ -261,6 +261,67 @@ Network File System.
         часть настроек ОС, как это происходит с GNU/Linux, но это представляет
         собой проблему для проприетарного ПО.
 \end{enumerate}
+
+\section{Конфигурация менеджера загрузки}
+Каждой группе машин соответствует определённая конфигурация загрузки.
+Конфигурация формируется на основе шаблона и списка элементов меню.
+Для удобства менеджер загрузки поддерживает глобальные и локальные параметры,
+доступные через объекты GLOBAL и LOCAL.
+
+\paragraph{Пример шаблона}
+\begin{verbatim}
+#!ipxe
+
+:retry
+echo [..] Configuring network...
+dhcp || goto retry
+echo [OK] Configured!
+
+:start
+menu Choose operationg system
+{% for menu in MENUITEM %}
+item {{menu.name}} {{menu.label}}
+{% endfor %}
+choose --default win7 --timeout 3000 target || goto cancel
+goto ${target}
+
+:failed
+echo Boot failed, dropping you to a shell
+shell
+goto start
+
+:cancel
+echo You cancelled the menu, dropping you to a shell
+shell
+goto start
+
+{% for menu in MENUITEM %}
+:{{menu.name}}
+{{menu.render}} || goto failed
+goto start
+{% endfor %}
+\end{verbatim}
+
+\paragraph{Пример элемента меню для Windows 7}
+\begin{description}
+    \item[name] win7
+    \item[label] Windows 7
+    \item[render] \verb=sanboot --no-describe --drive 0x80=
+\end{description}
+
+\paragraph{Пример элемента меню для GNU/Linux}
+\begin{description}
+    \item[name] arch64\_nbd
+    \item[label] Archlinux amd64 (NBD)
+    \item[render]
+        \begin{verbatim}
+initrd {{GLOBAL.boot}}/{{GLOBAL.initramfs}}
+chain {{GLOBAL.boot}}/{{GLOBAL.vmlinuz}} ip=dhcp ro \
+    nbd_host={{GLOBAL.nbd_host}} nbd_name={{LOCAL.nbd_name}} \
+    raid=noautodetect panic={{GLOBAL.panic}} \
+    max_loop={{GLOBAL.max_loop}}
+        \end{verbatim}
+\end{description}
 
 \section{Тестовые примеры}
 
