@@ -10,6 +10,9 @@ open: main.pdf
 %.ps: %.dot
 	dot -Tps -o$@ $<
 
+%.png: %.dot
+	dot -Tpng -o$@ $<
+
 clean:
 	rm -f main.pdf *.aux *.log *.toc
 

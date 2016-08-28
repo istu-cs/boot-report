@@ -1,12 +1,9 @@
 \documentclass[11pt]{article}
-\usepackage{xltxtra}
-\usepackage{polyglossia}
-\setdefaultlanguage[spelling=modern]{russian}
-%\setmainfont[Mapping=tex-text]{DejaVu Sans}
-%\setmainfont[Mapping=tex-text]{Liberation Sans}
-\setmonofont[Mapping=tex-text]{DejaVu Sans Mono}
-\setmainfont[Mapping=tex-text]{Linux Libertine O}
-%\setmonofont[Mapping=tex-text]{Liberation Mono}
+\usepackage{setspace}
+
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
 
 \usepackage{verbatim}
 \usepackage{tabularx}
@@ -15,62 +12,16 @@
 
 \usepackage{indentfirst}
 
-\usepackage{algorithm}
-\usepackage{algorithmic}
-
-\usepackage[a4paper]{geometry}
-\geometry{left=25mm}
-\geometry{right=25mm}
-\geometry{top=25mm}
-\geometry{bottom=15mm}
-
-\usepackage{listings}
-
-\setlength{\parindent}{10mm}
-\makeatletter
-% Переопределение команды секции
-\renewcommand{\section}{\@startsection{section}{1}%
-{\parindent}{3.25ex plus 1ex minus .2ex}%
-{1.5ex plus .2ex}{\bfseries\large\uppercase}}
-
-% Переопределение команды подсекции
-\renewcommand{\subsection}{\@startsection{subsection}{2}%
-{\parindent}{3.25ex plus 1ex minus .2ex}%
-{1.5ex plus .2ex}{\bfseries}}
-\makeatother
-
+\usepackage{graphicx}
 \newcommand{\includepicture}[3]{
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 %\large{\textbf{#2}}
-\includegraphics[width=#3\textwidth]{#1}
+\includegraphics[width=#3\textwidth]{#1.png}
 \end{center}
 \caption{#2}
 \end{figure}
-}
-
-\lstset{ %
-language=C++,                   % the language of the code
-basicstyle=\tiny,               % the size of the fonts that are used for the code
-numbers=left,                   % where to put the line-numbers
-numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
-stepnumber=2,                   % the step between two line-numbers. If it's 1, each line
-                                % will be numbered
-numbersep=5pt,                  % how far the line-numbers are from the code
-%backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-showspaces=false,               % show spaces adding particular underscores
-showstringspaces=false,         % underline spaces within strings
-showtabs=false,                 % show tabs within strings adding particular underscores
-frame=single,                   % adds a frame around the code
-tabsize=2,                      % sets default tabsize to 2 spaces
-captionpos=b,                   % sets the caption-position to bottom
-breaklines=true,                % sets automatic line breaking
-breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-title=\lstname,                 % show the filename of files included with \lstinputlisting;
-                                % also try caption instead of title
-escapeinside={\%*}{*)},         % if you want to add a comment within your code
-morekeywords={*,...}            % if you want to add more keywords to the set
 }
 
 \begin{document}
